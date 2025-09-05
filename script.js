@@ -26,6 +26,15 @@
         toggle.setAttribute('aria-expanded', 'false');
       }
     });
+
+    // Close menu on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.getAttribute('aria-expanded') === 'true') {
+        nav.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.focus();
+      }
+    });
   }
 
   // Current year in footer
@@ -145,6 +154,27 @@
       // Simulate submit success
       if (status) { status.classList.add('success'); status.textContent = 'Thanks! We\'ll be in touch shortly.'; }
       form.reset();
+    });
+  }
+
+  // Back-to-top button
+  const backToTop = document.getElementById('back-to-top');
+  if (backToTop) {
+    const onScroll = () => {
+      const y = window.scrollY || document.documentElement.scrollTop;
+      if (y > 500) backToTop.classList.add('show');
+      else backToTop.classList.remove('show');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    backToTop.addEventListener('click', (e) => {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) {
+        window.scrollTo(0, 0);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     });
   }
 })();
