@@ -36,6 +36,10 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
+      <button id="theme-toggle" class="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode">
+        <span class="sr-only">Toggle dark mode</span>
+        <span class="theme-icon" aria-hidden="true">🌙</span>
+      </button>
     </div>
   </header>
 
@@ -96,6 +100,22 @@
         <h2 id="cta-title">Ready to travel with purpose?</h2>
         <p>Start planning your low-impact adventure today. Our team can help tailor an itinerary that matches your values.</p>
         <a class="btn btn-primary" href="#" role="button">Get Started</a>
+
+        <form class="contact-form" action="#" method="post" novalidate>
+          <div class="form-row">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" autocomplete="name" placeholder="Your name" />
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" />
+          </div>
+          <div class="form-row">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Tell us about your ideal eco-trip..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send</button>
+        </form>
       </div>
     </section>
   </main>

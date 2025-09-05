@@ -7,6 +7,8 @@
   const nav = document.querySelector('.primary-nav');
   const toggle = document.querySelector('.nav-toggle');
   const menu = document.getElementById('nav-menu');
+  const themeToggle = document.getElementById('theme-toggle');
+  const root = document.documentElement;
 
   if (toggle && nav && menu) {
     toggle.addEventListener('click', () => {
@@ -47,4 +49,48 @@
       });
     });
   }
+
+  // Theme handling
+  const mediaDark = window.matchMedia('(prefers-color-scheme: dark)');
+  const getStoredTheme = () => localStorage.getItem('theme');
+  const setStoredTheme = (t) => localStorage.setItem('theme', t);
+  const currentStored = getStoredTheme();
+
+  const applyTheme = (t, manual = false) => {
+    root.setAttribute('data-theme', t);
+    if (themeToggle) {
+      const isDark = t === 'dark';
+      themeToggle.setAttribute('aria-pressed', String(isDark));
+      const icon = themeToggle.querySelector('.theme-icon');
+      if (icon) icon.textContent = isDark ? '☀️' : '🌙';
+      themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+    if (manual) setStoredTheme(t);
+  };
+
+  const initTheme = () => {
+    if (currentStored === 'dark' || currentStored === 'light') {
+      applyTheme(currentStored);
+    } else {
+      applyTheme(mediaDark.matches ? 'dark' : 'light');
+    }
+  };
+
+  initTheme();
+
+  // React to user toggling
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      applyTheme(next, true);
+    });
+  }
+
+  // React to system changes if user hasn't chosen manually
+  mediaDark.addEventListener('change', (e) => {
+    if (!getStoredTheme()) {
+      applyTheme(e.matches ? 'dark' : 'light');
+    }
+  });
 })();
