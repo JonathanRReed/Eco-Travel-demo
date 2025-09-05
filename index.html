@@ -16,10 +16,23 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
+  <!-- SVG Icons Sprite -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden">
+    <symbol id="icon-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M21.61 3.06a1 1 0 0 0- .9-.27C14.73 4.01 9.52 6.52 6.08 9.96 1.86 14.18 2.18 18.9 2.3 19.58a1 1 0 0 0 1.12.84c.67-.1 5.39-.42 9.62-4.64 3.44-3.44 5.94-8.65 7.17-14.29a1 1 0 0 0-.6-1.13zM12.1 14.1c-2.38 2.38-5.17 3.37-6.83 3.75.38-1.66 1.37-4.45 3.75-6.83 2.76-2.76 6.92-5.01 12.11-6.51-1.49 5.19-3.75 9.36-6.51 12.11z"/>
+    </symbol>
+    <symbol id="icon-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79z"/>
+    </symbol>
+    <symbol id="icon-sun" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.8 1.42-1.42zM1 13h3v-2H1v2zm10 10h2v-3h-2v3zm9-10v-2h-3v2h3zm-2.34 6.95l1.41-1.41-1.79-1.8-1.41 1.41 1.79 1.8zM17.24 4.84l1.79-1.8-1.41-1.41-1.8 1.79 1.42 1.42zM12 6a6 6 0 1 0 0 12 6 6 0 0 0 0-12zM3.76 19.07l1.8-1.79-1.42-1.42-1.79 1.8 1.41 1.41z"/>
+    </symbol>
+  </svg>
+
   <header class="site-header" role="banner">
     <div class="container header-inner">
       <a class="brand" href="#home" aria-label="Nomadiq Travel Destinations home">
-        <span class="brand-emoji" aria-hidden="true">🌿</span>
+        <svg class="icon icon-leaf" width="22" height="22" aria-hidden="true"><use href="#icon-leaf"></use></svg>
         <span class="brand-text">Nomadiq Travel Destinations</span>
       </a>
       <nav class="primary-nav" aria-label="Primary">
@@ -36,16 +49,16 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-      <button id="theme-toggle" class="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode">
-        <span class="sr-only">Toggle dark mode</span>
-        <span class="theme-icon" aria-hidden="true">🌙</span>
+      <button id="theme-toggle" class="theme-toggle" aria-pressed="false" aria-label="Switch to dark mode">
+        <span class="sr-only">Toggle color theme</span>
+        <svg class="icon" width="20" height="20" aria-hidden="true"><use id="theme-icon-use" href="#icon-moon"></use></svg>
       </button>
     </div>
   </header>
 
   <main id="main">
     <!-- Hero Section -->
-    <section id="home" class="section hero" aria-labelledby="hero-title">
+    <section id="home" class="section hero" aria-labelledby="hero-title" data-section="Home">
       <div class="container">
         <h1 id="hero-title">Explore Sustainable Travel</h1>
         <p class="lead">Discover eco-friendly destinations, support local communities, and minimize your footprint. Travel smarter with curated guides and tips for responsible adventures.</p>
@@ -57,7 +70,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section" aria-labelledby="about-title">
+    <section id="about" class="section" aria-labelledby="about-title" data-section="About">
       <div class="container">
         <h2 id="about-title">About Nomadiq Travel Destinations</h2>
         <p>We help travelers choose greener paths. From low-impact stays to carbon-aware itineraries, our mission is to make sustainable travel simple, inspiring, and accessible for everyone.</p>
@@ -65,7 +78,7 @@
     </section>
 
     <!-- Destinations Section (placeholder content for nav target) -->
-    <section id="destinations" class="section" aria-labelledby="destinations-title">
+    <section id="destinations" class="section" aria-labelledby="destinations-title" data-section="Destinations">
       <div class="container">
         <h2 id="destinations-title">Featured Eco-Friendly Destinations</h2>
         <div class="card-grid">
@@ -95,24 +108,25 @@
     </section>
 
     <!-- Call to Action Section -->
-    <section id="contact" class="section cta" aria-labelledby="cta-title">
+    <section id="contact" class="section cta" aria-labelledby="cta-title" data-section="Contact">
       <div class="container">
         <h2 id="cta-title">Ready to travel with purpose?</h2>
         <p>Start planning your low-impact adventure today. Our team can help tailor an itinerary that matches your values.</p>
         <a class="btn btn-primary" href="#" role="button">Get Started</a>
 
-        <form class="contact-form" action="#" method="post" novalidate>
+        <form class="contact-form" action="#" method="post" novalidate aria-describedby="form-status">
+          <div id="form-status" class="form-errors" role="status" aria-live="polite"></div>
           <div class="form-row">
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" autocomplete="name" placeholder="Your name" />
+            <input type="text" id="name" name="name" autocomplete="name" placeholder="Your name" required />
           </div>
           <div class="form-row">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" />
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required />
           </div>
           <div class="form-row">
             <label for="message">Message</label>
-            <textarea id="message" name="message" rows="4" placeholder="Tell us about your ideal eco-trip..."></textarea>
+            <textarea id="message" name="message" rows="4" placeholder="Tell us about your ideal eco-trip..." required></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Send</button>
         </form>

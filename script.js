@@ -9,6 +9,7 @@
   const menu = document.getElementById('nav-menu');
   const themeToggle = document.getElementById('theme-toggle');
   const root = document.documentElement;
+  const themeUseEl = document.getElementById('theme-icon-use');
 
   if (toggle && nav && menu) {
     toggle.addEventListener('click', () => {
@@ -61,8 +62,7 @@
     if (themeToggle) {
       const isDark = t === 'dark';
       themeToggle.setAttribute('aria-pressed', String(isDark));
-      const icon = themeToggle.querySelector('.theme-icon');
-      if (icon) icon.textContent = isDark ? '☀️' : '🌙';
+      if (themeUseEl) themeUseEl.setAttribute('href', isDark ? '#icon-sun' : '#icon-moon');
       themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
     }
     if (manual) setStoredTheme(t);
@@ -93,4 +93,58 @@
       applyTheme(e.matches ? 'dark' : 'light');
     }
   });
+
+  // Active nav link based on scroll position
+  const sections = document.querySelectorAll('section[data-section]');
+  const navLinks = document.querySelectorAll('.nav-list a[href^="#"]');
+  const linkMap = new Map();
+  navLinks.forEach((a) => {
+    const id = a.getAttribute('href').slice(1);
+    linkMap.set(id, a);
+  });
+  if ('IntersectionObserver' in window && sections.length) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const id = entry.target.id;
+        const link = linkMap.get(id);
+        if (!link) return;
+        if (entry.isIntersecting) {
+          navLinks.forEach((l) => l.classList.remove('is-active'));
+          link.classList.add('is-active');
+        }
+      });
+    }, { root: null, rootMargin: '0px 0px -60% 0px', threshold: 0.1 });
+    sections.forEach((sec) => io.observe(sec));
+  }
+
+  // Simple form validation
+  const form = document.querySelector('.contact-form');
+  if (form) {
+    const status = form.querySelector('#form-status');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = form.querySelector('#name');
+      const email = form.querySelector('#email');
+      const message = form.querySelector('#message');
+      let errors = [];
+      const emailRe = /[^@\s]+@[^@\s]+\.[^@\s]+/;
+      // Reset
+      [name, email, message].forEach((el) => el.setAttribute('aria-invalid', 'false'));
+
+      if (!name.value.trim()) { errors.push('Name is required.'); name.setAttribute('aria-invalid', 'true'); }
+      if (!email.value.trim() || !emailRe.test(email.value)) { errors.push('Enter a valid email.'); email.setAttribute('aria-invalid', 'true'); }
+      if (!message.value.trim()) { errors.push('Please add a brief message.'); message.setAttribute('aria-invalid', 'true'); }
+
+      if (errors.length) {
+        if (status) { status.classList.remove('success'); status.textContent = errors.join(' '); }
+        const firstInvalid = form.querySelector('[aria-invalid="true"]');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+
+      // Simulate submit success
+      if (status) { status.classList.add('success'); status.textContent = 'Thanks! We\'ll be in touch shortly.'; }
+      form.reset();
+    });
+  }
 })();
