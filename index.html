@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nomadiq Travel Destinations</title>
+  <meta name="description" content="Explore sustainable travel with Nomadiq Travel Destinations. Eco-friendly trips, responsible tourism, and greener adventures." />
+
+  <!-- Google Fonts: Heading + Body pairing -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="#home" aria-label="Nomadiq Travel Destinations home">
+        <span class="brand-emoji" aria-hidden="true">🌿</span>
+        <span class="brand-text">Nomadiq Travel Destinations</span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
+          <span class="sr-only">Menu</span>
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+        <ul id="nav-menu" class="nav-list">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#destinations">Destinations</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero Section -->
+    <section id="home" class="section hero" aria-labelledby="hero-title">
+      <div class="container">
+        <h1 id="hero-title">Explore Sustainable Travel</h1>
+        <p class="lead">Discover eco-friendly destinations, support local communities, and minimize your footprint. Travel smarter with curated guides and tips for responsible adventures.</p>
+        <div class="cta-group">
+          <a class="btn btn-primary" href="#destinations">Plan Your Trip</a>
+          <a class="btn btn-ghost" href="#about">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section" aria-labelledby="about-title">
+      <div class="container">
+        <h2 id="about-title">About Nomadiq Travel Destinations</h2>
+        <p>We help travelers choose greener paths. From low-impact stays to carbon-aware itineraries, our mission is to make sustainable travel simple, inspiring, and accessible for everyone.</p>
+      </div>
+    </section>
+
+    <!-- Destinations Section (placeholder content for nav target) -->
+    <section id="destinations" class="section" aria-labelledby="destinations-title">
+      <div class="container">
+        <h2 id="destinations-title">Featured Eco-Friendly Destinations</h2>
+        <div class="card-grid">
+          <article class="card">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="Lush green mountains and a river valley" />
+            <div class="card-body">
+              <h3>Misty Highlands</h3>
+              <p>Community-led tours, reforestation treks, and farm-to-table dining experiences.</p>
+            </div>
+          </article>
+          <article class="card">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop" alt="Turquoise ocean waves on a sandy beach" />
+            <div class="card-body">
+              <h3>Azure Coast</h3>
+              <p>Marine sanctuaries, reef-safe snorkeling, and coastal clean-up volunteer days.</p>
+            </div>
+          </article>
+          <article class="card">
+            <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1200&auto=format&fit=crop" alt="Dense forest with sunlight filtering through trees" />
+            <div class="card-body">
+              <h3>Emerald Forest</h3>
+              <p>Wildlife corridors, guided nature walks, and eco-lodges powered by renewables.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id="contact" class="section cta" aria-labelledby="cta-title">
+      <div class="container">
+        <h2 id="cta-title">Ready to travel with purpose?</h2>
+        <p>Start planning your low-impact adventure today. Our team can help tailor an itinerary that matches your values.</p>
+        <a class="btn btn-primary" href="#" role="button">Get Started</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>© <span id="year"></span> Nomadiq Travel Destinations • Travel light, leave a positive trace.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
