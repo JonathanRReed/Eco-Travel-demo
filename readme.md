@@ -4,7 +4,6 @@ A student demo website themed around eco-friendly travel. Built for the Universi
 
 - Program: The UT Dallas Global Career Accelerator (in partnership with Podium Education)
   - Learn more: https://www.podium.utdallas.edu/
-  - Web development track: https://www.podium.utdallas.edu/coding-for-web
 
 This project showcases modern, accessible, and responsive web design without external JS frameworks. It emphasizes sustainability, dark mode, a11y, and clean UX.
 
